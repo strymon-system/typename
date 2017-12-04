@@ -1,6 +1,6 @@
 [package]
 name = "typename_derive"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Sebastian Wicki <swicki@inf.ethz.ch>"]
 license = "MIT/Apache-2.0"
 repository = "https://github.com/strymon-system/typename"
@@ -14,3 +14,8 @@ proc-macro = true
 [dependencies]
 syn = "0.11"
 quote = "0.3"
+
+[dev-dependencies.typename]
+path = ".."
+version = "0.1.0"
+default-features = false
