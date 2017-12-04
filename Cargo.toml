@@ -1,0 +1,20 @@
+[package]
+name = "typename"
+version = "0.1.0"
+authors = ["Sebastian Wicki <swicki@inf.ethz.ch>"]
+license = "MIT/Apache-2.0"
+repository = "https://github.com/strymon-system/typename"
+documentation = "https://docs.rs/typename"
+description = "Stable alternative to Rust's type_name intrinsic."
+
+[dependencies.typename_derive]
+optional = true
+version = "0.1.0"
+path = "./typename_derive"
+
+[features]
+default = ["derive"]
+derive = ["typename_derive"]
+
+[workspace]
+members = ["typename_derive"]
