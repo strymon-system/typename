@@ -8,3 +8,15 @@ script:
     if [ $TRAVIS_RUST_VERSION == nightly ]; then
       cargo test --verbose --all
     fi
+after_success: |
+  [ $TRAVIS_BRANCH = master ] &&
+  [ $TRAVIS_PULL_REQUEST = false ] &&
+  cargo doc &&
+  echo "<meta http-equiv=refresh content=0;url=`basename ${TRAVIS_REPO_SLUG}`/index.html>" > target/doc/index.html
+deploy:
+ provider: pages
+ skip_cleanup: true
+ github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
+ local_dir: target/doc
+ on:
+   branch: gh-pages
