@@ -14,9 +14,11 @@ after_success: |
   cargo doc &&
   echo "<meta http-equiv=refresh content=0;url=`basename ${TRAVIS_REPO_SLUG}`/index.html>" > target/doc/index.html
 deploy:
+ rust: stable
  provider: pages
  skip_cleanup: true
  github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
  local_dir: target/doc
+ target_branch: gh-pages
  on:
-   branch: gh-pages
+   branch: master
