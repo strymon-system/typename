@@ -24,27 +24,22 @@
 
 extern crate proc_macro;
 
+#[macro_use]
 extern crate syn;
 #[macro_use]
 extern crate quote;
 
 use proc_macro::TokenStream;
+use syn::DeriveInput;
 
 #[doc(hidden)]
 #[proc_macro_derive(TypeName)]
 pub fn derive_topic_type(input: TokenStream) -> TokenStream {
-    let source = input.to_string();
-    let ast = syn::parse_derive_input(&source).unwrap();
-    let expanded = impl_topic_type(&ast);
-    expanded.parse().unwrap()
-}
-
-fn impl_topic_type(ast: &syn::DeriveInput) -> quote::Tokens {
+    let ast = parse_macro_input!(input as DeriveInput);
     let name = &ast.ident;
-    let ty_params = ast.generics.ty_params.iter().map(|p| &p.ident);
+    let ty_params = ast.generics.type_params().map(|p| &p.ident);
     let (impl_generics, ty_generics, where_clause) = ast.generics.split_for_impl();
-
-    quote! {
+    let expanded = quote! {
         impl #impl_generics ::typename::TypeName for #name #ty_generics #where_clause {
             fn fmt(f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
                 let _ty_name = concat!(module_path!(), "::", stringify!(#name));
@@ -55,5 +50,6 @@ fn impl_topic_type(ast: &syn::DeriveInput) -> quote::Tokens {
                     .finish()
             }
         }
-    }
+    };
+    TokenStream::from(expanded)
 }
