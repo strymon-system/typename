@@ -21,11 +21,14 @@ enum SomeEnum {
     _B,
 }
 
-#[derive(TypeName)]
-struct TupleStruct<T: TypeName>(T);
+// The TypeName bound is no longer needed; we'll add it to the impl instead.
+#[derive(Clone, TypeName)]
+struct TupleStruct<T>(T);
 
+// We add the TypeName bound to impl even if there are other bounds on the type parameter, and even
+// if you (now redundantly) specific a TypeName bound yourself.
 #[derive(TypeName)]
-struct Struct<T: TypeName, S: TypeName> {
+struct Struct<T: Clone, S: Clone + TypeName> {
     _t: T,
     _s: S,
 }
