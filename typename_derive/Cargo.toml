@@ -1,6 +1,6 @@
 [package]
 name = "typename_derive"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Sebastian Wicki <swicki@inf.ethz.ch>"]
 license = "MIT/Apache-2.0"
 repository = "https://github.com/strymon-system/typename"
