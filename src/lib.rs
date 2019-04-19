@@ -33,8 +33,9 @@
 //! ```rust,ignore
 //! #[macro_use] extern crate typename;
 //!
+//! // Note that Custom<T> will only implement TypeName when T does, too.
 //! #[derive(TypeName)]
-//! struct Custom<T: TypeName> {
+//! struct Custom<T> {
 //!     some_t: T,
 //! }
 //! ```
@@ -66,8 +67,8 @@ pub mod fmt;
 ///
 /// ## Derivable
 ///
-/// This trait can be used with `#[derive(TypeName)]`. Any generic parameters
-/// to a type must implement `TypeName` as well.
+/// This trait can be used with `#[derive(TypeName)]`. The derived impl will require that
+/// any generic parameters to the type implement `TypeName` as well.
 ///
 /// ## How can I implement `TypeName`?
 ///
