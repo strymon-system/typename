@@ -35,9 +35,23 @@ use syn::DeriveInput;
 #[doc(hidden)]
 #[proc_macro_derive(TypeName)]
 pub fn derive_topic_type(input: TokenStream) -> TokenStream {
-    let ast = parse_macro_input!(input as DeriveInput);
+    let mut ast = parse_macro_input!(input as DeriveInput);
     let name = &ast.ident;
-    let ty_params = ast.generics.type_params().map(|p| &p.ident);
+    let ty_params = ast
+        .generics
+        .type_params()
+        .map(|p| p.ident.clone())
+        .collect::<Vec<_>>();
+    {
+        // Add a T: TypeName bound to the impl for each type parameter in the type that we're
+        // deriving TypeName for.
+        let where_clause = ast.generics.make_where_clause();
+        for ty_name in &ty_params {
+            where_clause
+                .predicates
+                .push(parse_quote! { #ty_name: ::typename::TypeName });
+        }
+    }
     let (impl_generics, ty_generics, where_clause) = ast.generics.split_for_impl();
     let expanded = quote! {
         impl #impl_generics ::typename::TypeName for #name #ty_generics #where_clause {

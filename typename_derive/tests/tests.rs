@@ -12,7 +12,7 @@ extern crate typename;
 
 use typename::TypeName;
 
-#[derive(TypeName)]
+#[derive(Clone, TypeName)]
 struct UnitStruct;
 
 #[derive(TypeName)]
@@ -21,11 +21,15 @@ enum SomeEnum {
     _B,
 }
 
+// You don't need to add a TypeName bound to the struct's type parameter; we'll automatically add
+// that bound to the TypeName impl that gets derived.
 #[derive(TypeName)]
-struct TupleStruct<T: TypeName>(T);
+struct TupleStruct<T>(T);
 
+// Test that we correctly add the TypeName bound to the impl even if there are other bounds on the
+// type parameter, and even if you (now redundantly) specify a TypeName bound yourself.
 #[derive(TypeName)]
-struct Struct<T: TypeName, S: TypeName> {
+struct Struct<T: Clone, S: Clone + TypeName> {
     _t: T,
     _s: S,
 }
