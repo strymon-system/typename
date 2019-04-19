@@ -12,10 +12,10 @@ extern crate typename;
 
 use typename::TypeName;
 
-#[derive(TypeName)]
+#[derive(Clone, TypeName)]
 struct UnitStruct;
 
-#[derive(TypeName)]
+#[derive(Clone, TypeName)]
 enum SomeEnum {
     _A,
     _B,
