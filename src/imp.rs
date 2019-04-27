@@ -96,6 +96,7 @@ derive_type_name!(std::boxed::Box<T>);
 derive_type_name!(std::option::Option<T>);
 derive_type_name!(std::result::Result<T, E>);
 derive_type_name!(std::rc::Rc<T>);
+derive_type_name!(std::path::PathBuf);
 
 // the empty and singleton tuple are special cases
 impl ::TypeName for () {
