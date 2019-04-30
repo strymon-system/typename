@@ -248,5 +248,8 @@ mod tests {
         assert_eq_name::<[::std::rc::Rc<i32>; 5]>();
         assert_eq_name::<::std::marker::PhantomData<&i32>>();
         assert_eq_name::<::std::sync::Arc<i32>>();
+        assert_eq_name::<::std::sync::mpsc::Receiver<i32>>();
+        assert_eq_name::<::std::sync::mpsc::Sender<i32>>();
+        assert_eq_name::<::std::path::PathBuf>();
     }
 }
