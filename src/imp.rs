@@ -99,8 +99,8 @@ derive_type_name!(std::rc::Rc<T>);
 derive_type_name!(std::path::PathBuf);
 derive_type_name!(std::sync::Arc<T>);
 derive_type_name!(std::sync::RwLock<T>);
-derive_type_name!(std::sync::mpsc::Receiever);
-derive_type_name!(std::sync::mpsc::Sender);
+derive_type_name!(std::sync::mpsc::Receiver<T>);
+derive_type_name!(std::sync::mpsc::Sender<T>);
 
 // the empty and singleton tuple are special cases
 impl ::TypeName for () {
