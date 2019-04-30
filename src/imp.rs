@@ -97,8 +97,8 @@ derive_type_name!(std::option::Option<T>);
 derive_type_name!(std::result::Result<T, E>);
 derive_type_name!(std::rc::Rc<T>);
 derive_type_name!(std::path::PathBuf);
-derive_type_name!(std::sync::Arc);
-derive_type_name!(std::sync::RwLock);
+derive_type_name!(std::sync::Arc<T>);
+derive_type_name!(std::sync::RwLock<T>);
 derive_type_name!(std::sync::mpsc::Receiever);
 derive_type_name!(std::sync::mpsc::Sender);
 
