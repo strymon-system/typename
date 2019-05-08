@@ -97,6 +97,10 @@ derive_type_name!(std::option::Option<T>);
 derive_type_name!(std::result::Result<T, E>);
 derive_type_name!(std::rc::Rc<T>);
 derive_type_name!(std::path::PathBuf);
+derive_type_name!(std::sync::Arc<T>);
+derive_type_name!(std::sync::RwLock<T>);
+derive_type_name!(std::sync::mpsc::Receiver<T>);
+derive_type_name!(std::sync::mpsc::Sender<T>);
 
 // the empty and singleton tuple are special cases
 impl ::TypeName for () {
@@ -243,5 +247,9 @@ mod tests {
         assert_eq_name::<&mut Box<Vec<(bool, i32)>>>();
         assert_eq_name::<[::std::rc::Rc<i32>; 5]>();
         assert_eq_name::<::std::marker::PhantomData<&i32>>();
+        assert_eq_name::<::std::sync::Arc<i32>>();
+        assert_eq_name::<::std::sync::mpsc::Receiver<i32>>();
+        assert_eq_name::<::std::sync::mpsc::Sender<i32>>();
+        assert_eq_name::<::std::path::PathBuf>();
     }
 }
