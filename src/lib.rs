@@ -44,7 +44,7 @@
 //! This crate is inspired by the [`named_type`](https://docs.rs/named_type) crate
 //! which provides a similar interface. However, its output is not compatible with
 //! the `type_name` intrinsic, as its name does not contain the names of the
-//! concrete instanstances of the type parameters.
+//! concrete instances of the type parameters.
 
 #![cfg_attr(test, feature(test, core_intrinsics))]
 
