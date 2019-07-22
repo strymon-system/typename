@@ -92,6 +92,7 @@ impl<'a, T: ::TypeName> ::TypeName for &'a mut T {
 derive_type_name!(std::string::String);
 derive_type_name!(std::marker::PhantomData<T>);
 derive_type_name!(std::vec::Vec<T>);
+derive_type_name!(std::collections::HashMap<K, V>);
 derive_type_name!(std::boxed::Box<T>);
 derive_type_name!(std::option::Option<T>);
 derive_type_name!(std::result::Result<T, E>);
