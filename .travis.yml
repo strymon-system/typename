@@ -1,7 +1,7 @@
 language: rust
 rust:
   - stable
-  - nightly
+  # - nightly
 script:
   - cargo build
   - |
