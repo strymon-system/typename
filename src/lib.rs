@@ -6,6 +6,11 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
+//! **DEPRECATION NOTICE**: This crate has been deprecated. The `type_name`
+//! intrinsic has been stablized in
+//! [Rust 1.38](https://blog.rust-lang.org/2019/09/26/Rust-1.38.0.html#std:any::type_name).
+//! Users of this crate are asked to migrate to [`std::any::type_name`](https://doc.rust-lang.org/std/any/fn.type_name.html).
+//!
 //! This crate provides a compatible, safe and stable alternative to Rust's
 //! [`std::intrinsics::type_name`](https://doc.rust-lang.org/std/intrinsics/fn.type_name.html)
 //! intrinsic. This is achieved through the [`TypeName`](trait.TypeName.html)
